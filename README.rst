@@ -31,12 +31,12 @@ slims-lisp get
       Download a file from a slims experiment attachment step.
 
     Options:
-      --url TEXT           Slims REST URL.  [default: https://slims-
-                           lisp.epfl.ch/rest/rest; required]
+      --url TEXT           Slims REST URL. ex:
+                           https://<your_slims_address>/rest/rest  [required]
       --proj TEXT          Project name (if any).
       -e, --exp TEXT       Experiment name.  [required]
-      -s, --step TEXT      Experiment step name. Default: data_collection
-                           [default: data_collection; required]
+      -s, --step TEXT      Experiment step name.  [default: data_collection;
+                           required]
       -a, --attm TEXT      Attachment name.  [required]
       -o, --output TEXT    Output file name. [default: same as --attm]
       -u, --username TEXT  User name (prompted).  [required]

@@ -1,0 +1,11 @@
+{
+  "url": "https://slims-lisp-dev.epfl.ch/rest/rest/repo/85467",
+  "project_name": null,
+  "file_name": "tutorial_data.xlsx",
+  "step_name": "data_collection",
+  "creator": "arapin_local",
+  "attachment_name": "tutorial_data.xlsx",
+  "created": "2020-01-13T13:52:15.841847+00:00",
+  "attachment_file_filename": "tutorial_data.xlsx",
+  "experiment_name": "survival_analysis_test"
+}
