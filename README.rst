@@ -3,6 +3,7 @@ A high-level CLI for Slims REST API
 ===================================
 
 Features:
+
 - Download a file from a slims experiment attachment step.
 
 Resources
