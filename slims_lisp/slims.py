@@ -1,6 +1,6 @@
 import sys
-import requests
 import json
+import requests
 import datetime
 
 class Slims():

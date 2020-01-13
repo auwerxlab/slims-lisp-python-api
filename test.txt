@@ -1,30 +1,3 @@
-# A high-level CLI for Slims REST API
-
-Features:
-- Download a file from a slims experiment attachment step.
-
-# Resources
-
-- Git clone URL: https://github.com/auwerxlab/slims-lisp-python-api.git
-- Documentation: https://github.com/auwerxlab/slims-lisp-python-api
-
-# Getting this project
-
-Use git to clone this project where you need it.
-```
-$ git clone https://github.com/auwerxlab/slims-lisp-python-api.git
-```
-
-# Installing
-
-```
-$ ./install.sh
-```
-
-# Usage
-
-#### slims-lisp get
-<pre>
 Usage: slims-lisp get [OPTIONS]
 
   Download a file from a slims experiment attachment step.
@@ -41,11 +14,3 @@ Options:
   -u, --username TEXT  User name (prompted).  [required]
   -p, --pwd TEXT       Password (prompted).  [required]
   --help               Show this message and exit.
-</pre>
-
-Example:
-
-```
-$ slims-lisp get --url <your_url> --proj <your_project> -e <your_experiment> -s <your_attachment_step> -a <your_attachment_name>
-```
-
