@@ -2,6 +2,8 @@
 A high-level CLI for Slims REST API
 ===================================
 
+Slims-lisp is a small python package that provides a CLI for Slims REST API.
+
 Features:
 
 - Download a file from a slims experiment attachment step.
@@ -11,9 +13,12 @@ Resources
 
 - Git clone URL: https://github.com/auwerxlab/slims-lisp-python-api.git
 - Documentation: https://github.com/auwerxlab/slims-lisp-python-api
+- PyPI repository: https://pypi.org/project/slims-lisp
 
 Installation
 ============
+
+Slims-lisp can be install with `pipx`:
 
 ::
 
