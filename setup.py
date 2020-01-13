@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name = 'slims-lisp',
-    version = '0.0.1',
+    version = '0.0.2',
     description = 'A high-level CLI for Slims REST API',
     long_description = open('README.rst').read(),
     long_description_content_type = 'text/x-rst',
@@ -12,6 +12,7 @@ setup(
     url = 'https://github.com/auwerxlab/slims-lisp-python-api',
     packages = find_packages(),
     install_requires = [
+        'click',
         'requests',
         'datetime',
     ],
