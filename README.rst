@@ -54,8 +54,8 @@ Output:
 ::
 
     <your_working_directory>
-    |── <downloaded_file>               The requested file
-    └── <downloaded_file>_metadata.txt  Associated metadata in a JSON format
+    |── <output_file>               The requested file
+    └── <output_file>_metadata.txt  Associated metadata in a JSON format
 
 Example:
 
