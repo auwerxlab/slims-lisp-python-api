@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name = 'slims-lisp',
-    version = '0.0.3',
+    version = '0.0.4',
     description = 'A high-level CLI for Slims REST API',
     long_description = open('README.rst').read(),
     long_description_content_type = 'text/x-rst',

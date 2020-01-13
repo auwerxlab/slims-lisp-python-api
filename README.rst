@@ -16,7 +16,7 @@ Installation
 
 ::
 
-    $ ./install.sh
+    $ pipx install slims-lisp
 
 Usage
 =====
