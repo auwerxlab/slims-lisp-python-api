@@ -5,7 +5,7 @@ from slims_lisp.slims import Slims
 def cli():
     pass
 
-@cli.command(help="Download a file from a slims experiment attachment step.")
+@cli.command(help="Download a file and its associated metadata from a slims experiment attachment step.")
 @click.option('--url',
     help='Slims REST URL. ex: https://<your_slims_address>/rest/rest',
     required=True)

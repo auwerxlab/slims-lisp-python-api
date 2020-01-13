@@ -18,7 +18,7 @@ Resources
 Installation
 ============
 
-Slims-lisp can be install with `pipx`:
+Slims-lisp can be installed with `pipx`:
 
 ::
 
@@ -34,7 +34,7 @@ slims-lisp get
 
     Usage: slims-lisp get [OPTIONS]
 
-      Download a file from a slims experiment attachment step.
+      Download a file and its associated metadata from a slims experiment attachment step.
 
     Options:
       --url TEXT           Slims REST URL. ex:
@@ -48,6 +48,14 @@ slims-lisp get
       -u, --username TEXT  User name (prompted).  [required]
       -p, --pwd TEXT       Password (prompted).  [required]
       --help               Show this message and exit.
+
+Output:
+
+::
+
+    <your_working_directory>
+    |── <downloaded_file>               The requested file
+    └── <downloaded_file>_metadata.txt  Associated metadata in a JSON format
 
 Example:
 
