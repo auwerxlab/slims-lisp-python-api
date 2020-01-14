@@ -18,11 +18,14 @@ Resources
 Installation
 ============
 
-Slims-lisp can be installed with `pipx`:
+Slims-lisp can be installed from PyPI using any `pip` tools.
+
+The simplest way is to install slims-lisp with `pipx`:
 
 ::
 
     $ pipx install slims-lisp
+
 
 Usage
 =====
@@ -34,20 +37,26 @@ slims-lisp get
 
     Usage: slims-lisp get [OPTIONS]
 
-      Download a file and its associated metadata from a slims experiment attachment step.
+      Download a file and its associated metadata from a slims experiment
+      attachment step.
 
     Options:
-      --url TEXT           Slims REST URL. ex:
-                           https://<your_slims_address>/rest/rest  [required]
-      --proj TEXT          Project name (if any).
-      -e, --exp TEXT       Experiment name.  [required]
-      -s, --step TEXT      Experiment step name.  [default: data_collection;
-                           required]
-      -a, --attm TEXT      Attachment name.  [required]
-      -o, --output TEXT    Output file name. [default: same as --attm]
-      -u, --username TEXT  User name (prompted).  [required]
-      -p, --pwd TEXT       Password (prompted).  [required]
-      --help               Show this message and exit.
+      --url TEXT                      Slims REST URL. ex:
+                                      https://<your_slims_address>/rest/rest
+                                      [required]
+      --proj TEXT                     Project name (if any).
+      -e, --exp TEXT                  Experiment name.  [required]
+      -s, --step TEXT                 Experiment step name.  [default:
+                                      data_collection; required]
+      -a, --attm TEXT                 Attachment name.  [required]
+      --active [true|false|both]      Search only in active or inactive steps (or
+                                      in both).  [default: true]
+      -l, --linked [true|false|both]  Search only linked or unlinked attachments
+                                      (or both).  [default: true]
+      -o, --output TEXT               Output file name. [default: same as --attm]
+      -u, --username TEXT             User name (prompted).  [required]
+      -p, --pwd TEXT                  Password (prompted).  [required]
+      --help                          Show this message and exit.
 
 Output:
 

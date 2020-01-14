@@ -10,13 +10,19 @@ class Slims():
         self.username = username
         self.pwd = pwd
 
-    def get_attachment(self, proj, exp, step, attm, output):
+    def get_attachment(self, proj, exp, step, attm, active, linked, output):
         """Download a file from a slims experiment attachment step."""
 
+        if active is None:
+            active = "true"
+        active = active.lower()
+        if linked is None:
+            linked = "true"
+        linked = linked.lower()
         if output is None:
             output = attm
 
-
+        # Retrieve Project
         criteria = [
             {"fieldName":"xprn_name",
             "operator":"equals",
@@ -42,7 +48,7 @@ class Slims():
                     }
                 }
             )
-    
+
             if len(project.json()["entities"]) > 1:
                 sys.exit("Multiple projects found with name '" + proj +
                     "'. Make sure projects names are unique."
@@ -72,21 +78,29 @@ class Slims():
         elif len(experiment_run.json()["entities"]) == 0:
             sys.exit("No experiment found with name '" + exp + "'.")
 
+        # Retrieve ExperimentRunStep
+        criteria = [
+            {"fieldName":"xprs_fk_experimentRun",
+            "operator":"equals",
+            "value":experiment_run.json()['entities'][0]['pk']},
+            {"fieldName":"xpst_type",
+            "operator":"equals",
+            "value":"ATTACHMENT_STEP"},
+            {"fieldName":"xpst_name",
+            "operator":"equals",
+            "value":step}
+        ]
+
+        if active != "both":
+            criteria.append({"fieldName":"xprs_active",
+                "operator":"equals",
+                "value":active})
+
         experiment_step = requests.get(self.url + "/ExperimentRunStep/advanced",
             auth=(self.username, self.pwd),
             headers={"Content-Type":"application/json"},
             json={"criteria":{"operator":"and",
-                    "criteria":[
-                        {"fieldName":"xprs_fk_experimentRun",
-                        "operator":"equals",
-                        "value": experiment_run.json()['entities'][0]['pk']},
-                        {"fieldName":"xpst_type",
-                        "operator":"equals",
-                        "value": "ATTACHMENT_STEP"},
-                        {"fieldName":"xpst_name",
-                        "operator":"equals",
-                        "value": step}
-                    ]
+                    "criteria":criteria
                 }
             }
         )
@@ -101,18 +115,26 @@ class Slims():
                 "' in experiment '" + exp + "'."
             )
 
+        # Retrieve Attachment
+        criteria = [
+            {"fieldName":"attm_name",
+            "operator":"equals",
+            "value":attm},
+            {"fieldName":"user_userName",
+            "operator":"equals",
+            "value":self.username}
+        ]
+
+        if linked != "both":
+            criteria.append({"fieldName":"attm_linkCount",
+                "operator":"greaterThan",
+                "value":0})
+        
         attachment = requests.get(self.url + "/Attachment/advanced",
             auth=(self.username, self.pwd),
             headers={"Content-Type":"application/json"},
             json={"criteria":{"operator":"and",
-                    "criteria":[
-                        {"fieldName":"attm_name",
-                        "operator":"equals",
-                        "value":attm},
-                        {"fieldName":"user_userName",
-                        "operator":"equals",
-                        "value":self.username}
-                    ]
+                    "criteria":criteria
                 }
             }
         )
