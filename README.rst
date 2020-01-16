@@ -2,30 +2,48 @@
 A high-level CLI for Slims REST API
 ===================================
 
+.. image:: http://img.shields.io/badge/license-MIT-brightgreen.svg
+   :target: https://github.com/auwerxlab/slims-lisp-python-api/blob/master/LICENSE
+.. image:: https://img.shields.io/github/v/release/auwerxlab/slims-lisp-python-api
+   :target: https://github.com/auwerxlab/slims-lisp-python-api/releases
+.. image:: https://img.shields.io/pypi/v/slims-lisp
+   :target: https://pypi.python.org/pypi/slims-lisp-python-api
+
 Slims-lisp is a small python package that provides a CLI for Slims REST API.
 
 Features:
 
 - Download a file from a slims experiment attachment step.
 
-Resources
-=========
-
-- Git clone URL: https://github.com/auwerxlab/slims-lisp-python-api.git
-- Documentation: https://github.com/auwerxlab/slims-lisp-python-api
-- PyPI repository: https://pypi.org/project/slims-lisp
-
 Installation
 ============
 
-Slims-lisp can be installed from PyPI using any `pip` tools.
+The latest release is available on PyPI and can be installed using ``pip``:
 
-The simplest way is to install slims-lisp with `pipx`:
+::
+
+    $ pip install slims-lisp
+
+Isolated environments using ``pipx``
+------------------------------------
+
+Install and execute slims-lisp in an isolated environment using ``pipx``.
+
+`Install pipx <https://github.com/pipxproject/pipx#install-pipx>`_
+and make sure that the ``$PATH`` is correctly configured.
+
+::
+
+    $ python3 -m pip install --user pipx
+    $ pipx ensurepath
+
+Once ``pipx`` is installed use following command to install ``slims-lisp``.
 
 ::
 
     $ pipx install slims-lisp
-
+    $ which slims-lisp
+    ~/.local/bin/slims-lisp
 
 Usage
 =====
