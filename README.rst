@@ -2,7 +2,7 @@
 A high-level CLI for Slims REST API
 ===================================
 
-.. image:: http://img.shields.io/badge/license-MIT-brightgreen.svg
+.. image:: https://img.shields.io/badge/license-apache2-brightgreen.svg
    :target: https://github.com/auwerxlab/slims-lisp-python-api/blob/master/LICENSE
 .. image:: https://img.shields.io/github/v/release/auwerxlab/slims-lisp-python-api
    :target: https://github.com/auwerxlab/slims-lisp-python-api/releases
