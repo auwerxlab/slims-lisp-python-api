@@ -1,0 +1,778 @@
+{
+  "entities": [
+    {
+      "tableName": "Attachment",
+      "canDelete": true,
+      "links": [
+        {
+          "href": "http://slims-lisp-dev.epfl.ch/slimslispdevrest/rest/Attachment/85467",
+          "rel": "self"
+        },
+        {
+          "href": "http://slims-lisp-dev.epfl.ch/slimslispdevrest/rest/User/187",
+          "rel": "attm_fk_user"
+        },
+        {
+          "href": "http://slims-lisp-dev.epfl.ch/slimslispdevrest/rest/AttachmentLink?atln_fk_attachment=85467",
+          "rel": "-atln_fk_attachment"
+        },
+        {
+          "href": "http://slims-lisp-dev.epfl.ch/slimslispdevrest/rest/attachment/Attachment/85467",
+          "rel": "attachments"
+        }
+      ],
+      "columns": [
+        {
+          "name": "attm_name",
+          "position": 0,
+          "value": "tutorial_data.xlsx",
+          "hidden": false,
+          "title": "Name",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_fk_attachmentType",
+          "position": 1,
+          "value": null,
+          "foreignTable": "AttachmentType",
+          "hidden": false,
+          "foreignDisplayColumn": "attp_name",
+          "displayValue": null,
+          "title": "Type",
+          "datatype": "FOREIGN_KEY",
+          "editable": false
+        },
+        {
+          "name": "attm_fk_user",
+          "position": 2,
+          "value": 187,
+          "foreignTable": "User",
+          "hidden": false,
+          "foreignDisplayColumn": "user_userName",
+          "displayValue": "arapin_local",
+          "title": "Owner",
+          "datatype": "FOREIGN_KEY",
+          "editable": true
+        },
+        {
+          "name": "attm_fk_group",
+          "position": 3,
+          "value": null,
+          "foreignTable": "Groups",
+          "hidden": false,
+          "foreignDisplayColumn": "grps_groupName",
+          "displayValue": null,
+          "title": "Group",
+          "datatype": "FOREIGN_KEY",
+          "editable": true
+        },
+        {
+          "name": "attm_mainReport",
+          "position": 4,
+          "value": false,
+          "hidden": false,
+          "title": "Main report",
+          "datatype": "BOOLEAN",
+          "editable": true
+        },
+        {
+          "name": "attm_file_filesize",
+          "position": 5,
+          "value": 8986,
+          "hidden": false,
+          "title": "Size",
+          "datatype": "INTEGER",
+          "editable": true
+        },
+        {
+          "name": "attm_file_date_created",
+          "position": 6,
+          "value": 1576752630000,
+          "hidden": false,
+          "subType": "datetime",
+          "dateFormat": "dd/MM/yyyy HH:mm",
+          "title": "Date",
+          "datatype": "DATE",
+          "editable": true
+        },
+        {
+          "name": "attm_isDirectory",
+          "position": 7,
+          "value": false,
+          "hidden": false,
+          "title": "Directory",
+          "datatype": "BOOLEAN",
+          "editable": true
+        },
+        {
+          "name": "attm_linkCount",
+          "position": 8,
+          "value": 2,
+          "hidden": false,
+          "title": "# of links to this attachment",
+          "datatype": "INTEGER",
+          "editable": true
+        },
+        {
+          "name": "attm_createdBy",
+          "position": 9,
+          "value": "arapin_local",
+          "hidden": false,
+          "title": "Created by",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_createdOn",
+          "position": 10,
+          "value": 1576752630000,
+          "hidden": false,
+          "subType": "datetime",
+          "dateFormat": "dd/MM/yyyy HH:mm",
+          "title": "Created on",
+          "datatype": "DATE",
+          "editable": true
+        },
+        {
+          "name": "attm_modifiedBy",
+          "position": 11,
+          "value": "arapin_local",
+          "hidden": false,
+          "title": "Modified by",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_modifiedOn",
+          "position": 12,
+          "value": 1576752630000,
+          "hidden": false,
+          "subType": "datetime",
+          "dateFormat": "dd/MM/yyyy HH:mm",
+          "title": "Modified on",
+          "datatype": "DATE",
+          "editable": true
+        },
+        {
+          "name": "attm_path",
+          "position": 13,
+          "value": "54/969/4ab1a2e4d7f8326e6740c7cd8fb/tutorial_data.xlsx",
+          "hidden": true,
+          "title": "attm_path",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_analysisRole",
+          "position": 14,
+          "value": null,
+          "hidden": true,
+          "title": "attm_analysisRole",
+          "datatype": "ENUM",
+          "editable": true
+        },
+        {
+          "name": "attm_isRemote",
+          "position": 15,
+          "value": false,
+          "hidden": true,
+          "title": "attm_isRemote",
+          "datatype": "BOOLEAN",
+          "editable": true
+        },
+        {
+          "name": "user_userName",
+          "position": 16,
+          "value": "arapin_local",
+          "hidden": true,
+          "title": "User name",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_file_filename",
+          "position": 17,
+          "value": "tutorial_data.xlsx",
+          "hidden": true,
+          "title": "File name",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_pk",
+          "position": 18,
+          "value": 85467,
+          "hidden": true,
+          "title": "attm_pk",
+          "datatype": "INTEGER",
+          "editable": true
+        },
+        {
+          "name": "attp_name",
+          "position": 19,
+          "value": null,
+          "hidden": true,
+          "title": "Name",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_isMachineData",
+          "position": 20,
+          "value": false,
+          "hidden": true,
+          "title": "attm_isMachineData",
+          "datatype": "BOOLEAN",
+          "editable": true
+        },
+        {
+          "name": "attm_indexingStatus",
+          "position": 21,
+          "value": "INDEXED",
+          "hidden": true,
+          "displayValue": "",
+          "title": "attm_indexingStatus",
+          "datatype": "ENUM",
+          "editable": true
+        },
+        {
+          "name": "attm_hash",
+          "position": 22,
+          "value": "73ec3029196d6e441d8c4cbdf25c7878",
+          "hidden": true,
+          "title": "attm_hash",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "grps_groupName",
+          "position": 23,
+          "value": null,
+          "hidden": true,
+          "title": "Name",
+          "datatype": "STRING",
+          "editable": true
+        }
+      ],
+      "canUpdate": true,
+      "pk": 85467
+    },
+    {
+      "tableName": "Attachment",
+      "canDelete": true,
+      "links": [
+        {
+          "href": "http://slims-lisp-dev.epfl.ch/slimslispdevrest/rest/Attachment/85469",
+          "rel": "self"
+        },
+        {
+          "href": "http://slims-lisp-dev.epfl.ch/slimslispdevrest/rest/User/187",
+          "rel": "attm_fk_user"
+        },
+        {
+          "href": "http://slims-lisp-dev.epfl.ch/slimslispdevrest/rest/AttachmentLink?atln_fk_attachment=85469",
+          "rel": "-atln_fk_attachment"
+        },
+        {
+          "href": "http://slims-lisp-dev.epfl.ch/slimslispdevrest/rest/attachment/Attachment/85469",
+          "rel": "attachments"
+        }
+      ],
+      "columns": [
+        {
+          "name": "attm_name",
+          "position": 0,
+          "value": "tutorial_data.xlsx",
+          "hidden": false,
+          "title": "Name",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_fk_attachmentType",
+          "position": 1,
+          "value": null,
+          "foreignTable": "AttachmentType",
+          "hidden": false,
+          "foreignDisplayColumn": "attp_name",
+          "displayValue": null,
+          "title": "Type",
+          "datatype": "FOREIGN_KEY",
+          "editable": false
+        },
+        {
+          "name": "attm_fk_user",
+          "position": 2,
+          "value": 187,
+          "foreignTable": "User",
+          "hidden": false,
+          "foreignDisplayColumn": "user_userName",
+          "displayValue": "arapin_local",
+          "title": "Owner",
+          "datatype": "FOREIGN_KEY",
+          "editable": true
+        },
+        {
+          "name": "attm_fk_group",
+          "position": 3,
+          "value": null,
+          "foreignTable": "Groups",
+          "hidden": false,
+          "foreignDisplayColumn": "grps_groupName",
+          "displayValue": null,
+          "title": "Group",
+          "datatype": "FOREIGN_KEY",
+          "editable": true
+        },
+        {
+          "name": "attm_mainReport",
+          "position": 4,
+          "value": false,
+          "hidden": false,
+          "title": "Main report",
+          "datatype": "BOOLEAN",
+          "editable": true
+        },
+        {
+          "name": "attm_file_filesize",
+          "position": 5,
+          "value": 8986,
+          "hidden": false,
+          "title": "Size",
+          "datatype": "INTEGER",
+          "editable": true
+        },
+        {
+          "name": "attm_file_date_created",
+          "position": 6,
+          "value": 1579006274000,
+          "hidden": false,
+          "subType": "datetime",
+          "dateFormat": "dd/MM/yyyy HH:mm",
+          "title": "Date",
+          "datatype": "DATE",
+          "editable": true
+        },
+        {
+          "name": "attm_isDirectory",
+          "position": 7,
+          "value": false,
+          "hidden": false,
+          "title": "Directory",
+          "datatype": "BOOLEAN",
+          "editable": true
+        },
+        {
+          "name": "attm_linkCount",
+          "position": 8,
+          "value": 2,
+          "hidden": false,
+          "title": "# of links to this attachment",
+          "datatype": "INTEGER",
+          "editable": true
+        },
+        {
+          "name": "attm_createdBy",
+          "position": 9,
+          "value": "arapin_local",
+          "hidden": false,
+          "title": "Created by",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_createdOn",
+          "position": 10,
+          "value": 1579006274000,
+          "hidden": false,
+          "subType": "datetime",
+          "dateFormat": "dd/MM/yyyy HH:mm",
+          "title": "Created on",
+          "datatype": "DATE",
+          "editable": true
+        },
+        {
+          "name": "attm_modifiedBy",
+          "position": 11,
+          "value": "arapin_local",
+          "hidden": false,
+          "title": "Modified by",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_modifiedOn",
+          "position": 12,
+          "value": 1579006274000,
+          "hidden": false,
+          "subType": "datetime",
+          "dateFormat": "dd/MM/yyyy HH:mm",
+          "title": "Modified on",
+          "datatype": "DATE",
+          "editable": true
+        },
+        {
+          "name": "attm_path",
+          "position": 13,
+          "value": "38/94b/436415d4374a1187b019e61ac9e/tutorial_data.xlsx",
+          "hidden": true,
+          "title": "attm_path",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_analysisRole",
+          "position": 14,
+          "value": null,
+          "hidden": true,
+          "title": "attm_analysisRole",
+          "datatype": "ENUM",
+          "editable": true
+        },
+        {
+          "name": "attm_isRemote",
+          "position": 15,
+          "value": false,
+          "hidden": true,
+          "title": "attm_isRemote",
+          "datatype": "BOOLEAN",
+          "editable": true
+        },
+        {
+          "name": "user_userName",
+          "position": 16,
+          "value": "arapin_local",
+          "hidden": true,
+          "title": "User name",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_file_filename",
+          "position": 17,
+          "value": "tutorial_data.xlsx",
+          "hidden": true,
+          "title": "File name",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_pk",
+          "position": 18,
+          "value": 85469,
+          "hidden": true,
+          "title": "attm_pk",
+          "datatype": "INTEGER",
+          "editable": true
+        },
+        {
+          "name": "attp_name",
+          "position": 19,
+          "value": null,
+          "hidden": true,
+          "title": "Name",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_isMachineData",
+          "position": 20,
+          "value": false,
+          "hidden": true,
+          "title": "attm_isMachineData",
+          "datatype": "BOOLEAN",
+          "editable": true
+        },
+        {
+          "name": "attm_indexingStatus",
+          "position": 21,
+          "value": "INDEXED",
+          "hidden": true,
+          "displayValue": "",
+          "title": "attm_indexingStatus",
+          "datatype": "ENUM",
+          "editable": true
+        },
+        {
+          "name": "attm_hash",
+          "position": 22,
+          "value": "73ec3029196d6e441d8c4cbdf25c7878",
+          "hidden": true,
+          "title": "attm_hash",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "grps_groupName",
+          "position": 23,
+          "value": null,
+          "hidden": true,
+          "title": "Name",
+          "datatype": "STRING",
+          "editable": true
+        }
+      ],
+      "canUpdate": true,
+      "pk": 85469
+    },
+    {
+      "tableName": "Attachment",
+      "canDelete": true,
+      "links": [
+        {
+          "href": "http://slims-lisp-dev.epfl.ch/slimslispdevrest/rest/Attachment/85472",
+          "rel": "self"
+        },
+        {
+          "href": "http://slims-lisp-dev.epfl.ch/slimslispdevrest/rest/User/187",
+          "rel": "attm_fk_user"
+        },
+        {
+          "href": "http://slims-lisp-dev.epfl.ch/slimslispdevrest/rest/AttachmentLink?atln_fk_attachment=85472",
+          "rel": "-atln_fk_attachment"
+        },
+        {
+          "href": "http://slims-lisp-dev.epfl.ch/slimslispdevrest/rest/attachment/Attachment/85472",
+          "rel": "attachments"
+        }
+      ],
+      "columns": [
+        {
+          "name": "attm_name",
+          "position": 0,
+          "value": "tutorial_data.xlsx",
+          "hidden": false,
+          "title": "Name",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_fk_attachmentType",
+          "position": 1,
+          "value": null,
+          "foreignTable": "AttachmentType",
+          "hidden": false,
+          "foreignDisplayColumn": "attp_name",
+          "displayValue": null,
+          "title": "Type",
+          "datatype": "FOREIGN_KEY",
+          "editable": false
+        },
+        {
+          "name": "attm_fk_user",
+          "position": 2,
+          "value": 187,
+          "foreignTable": "User",
+          "hidden": false,
+          "foreignDisplayColumn": "user_userName",
+          "displayValue": "arapin_local",
+          "title": "Owner",
+          "datatype": "FOREIGN_KEY",
+          "editable": true
+        },
+        {
+          "name": "attm_fk_group",
+          "position": 3,
+          "value": null,
+          "foreignTable": "Groups",
+          "hidden": false,
+          "foreignDisplayColumn": "grps_groupName",
+          "displayValue": null,
+          "title": "Group",
+          "datatype": "FOREIGN_KEY",
+          "editable": true
+        },
+        {
+          "name": "attm_mainReport",
+          "position": 4,
+          "value": false,
+          "hidden": false,
+          "title": "Main report",
+          "datatype": "BOOLEAN",
+          "editable": true
+        },
+        {
+          "name": "attm_file_filesize",
+          "position": 5,
+          "value": 8986,
+          "hidden": false,
+          "title": "Size",
+          "datatype": "INTEGER",
+          "editable": true
+        },
+        {
+          "name": "attm_file_date_created",
+          "position": 6,
+          "value": 1579013877000,
+          "hidden": false,
+          "subType": "datetime",
+          "dateFormat": "dd/MM/yyyy HH:mm",
+          "title": "Date",
+          "datatype": "DATE",
+          "editable": true
+        },
+        {
+          "name": "attm_isDirectory",
+          "position": 7,
+          "value": false,
+          "hidden": false,
+          "title": "Directory",
+          "datatype": "BOOLEAN",
+          "editable": true
+        },
+        {
+          "name": "attm_linkCount",
+          "position": 8,
+          "value": 2,
+          "hidden": false,
+          "title": "# of links to this attachment",
+          "datatype": "INTEGER",
+          "editable": true
+        },
+        {
+          "name": "attm_createdBy",
+          "position": 9,
+          "value": "arapin_local",
+          "hidden": false,
+          "title": "Created by",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_createdOn",
+          "position": 10,
+          "value": 1579013877000,
+          "hidden": false,
+          "subType": "datetime",
+          "dateFormat": "dd/MM/yyyy HH:mm",
+          "title": "Created on",
+          "datatype": "DATE",
+          "editable": true
+        },
+        {
+          "name": "attm_modifiedBy",
+          "position": 11,
+          "value": "arapin_local",
+          "hidden": false,
+          "title": "Modified by",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_modifiedOn",
+          "position": 12,
+          "value": 1579013877000,
+          "hidden": false,
+          "subType": "datetime",
+          "dateFormat": "dd/MM/yyyy HH:mm",
+          "title": "Modified on",
+          "datatype": "DATE",
+          "editable": true
+        },
+        {
+          "name": "attm_path",
+          "position": 13,
+          "value": "ed/3c0/de279084686abf3fce38aea0a0e/tutorial_data.xlsx",
+          "hidden": true,
+          "title": "attm_path",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_analysisRole",
+          "position": 14,
+          "value": null,
+          "hidden": true,
+          "title": "attm_analysisRole",
+          "datatype": "ENUM",
+          "editable": true
+        },
+        {
+          "name": "attm_isRemote",
+          "position": 15,
+          "value": false,
+          "hidden": true,
+          "title": "attm_isRemote",
+          "datatype": "BOOLEAN",
+          "editable": true
+        },
+        {
+          "name": "user_userName",
+          "position": 16,
+          "value": "arapin_local",
+          "hidden": true,
+          "title": "User name",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_file_filename",
+          "position": 17,
+          "value": "tutorial_data.xlsx",
+          "hidden": true,
+          "title": "File name",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_pk",
+          "position": 18,
+          "value": 85472,
+          "hidden": true,
+          "title": "attm_pk",
+          "datatype": "INTEGER",
+          "editable": true
+        },
+        {
+          "name": "attp_name",
+          "position": 19,
+          "value": null,
+          "hidden": true,
+          "title": "Name",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "attm_isMachineData",
+          "position": 20,
+          "value": false,
+          "hidden": true,
+          "title": "attm_isMachineData",
+          "datatype": "BOOLEAN",
+          "editable": true
+        },
+        {
+          "name": "attm_indexingStatus",
+          "position": 21,
+          "value": "INDEXED",
+          "hidden": true,
+          "displayValue": "",
+          "title": "attm_indexingStatus",
+          "datatype": "ENUM",
+          "editable": true
+        },
+        {
+          "name": "attm_hash",
+          "position": 22,
+          "value": "73ec3029196d6e441d8c4cbdf25c7878",
+          "hidden": true,
+          "title": "attm_hash",
+          "datatype": "STRING",
+          "editable": true
+        },
+        {
+          "name": "grps_groupName",
+          "position": 23,
+          "value": null,
+          "hidden": true,
+          "title": "Name",
+          "datatype": "STRING",
+          "editable": true
+        }
+      ],
+      "canUpdate": true,
+      "pk": 85472
+    }
+  ]
+}

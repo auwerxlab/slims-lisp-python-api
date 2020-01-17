@@ -49,17 +49,66 @@ def cli():
     hide_input = True,
     help = 'Password (prompted).',
     required = True)
-def get(url, username, pwd, proj, exp, step, attm, active, linked, output):
+def fetch(url, username, pwd, proj, exp, step, attm, active, linked, output):
     slims = Slims(url = url,
         username = username,
         pwd = pwd)
-    slims.get_attachment(proj = proj,
+    slims.download_attachment(proj = proj,
         exp = exp,
         step = step,
         attm = attm,
         active = active,
         linked = linked,
         output = output
+    )
+
+@cli.command(help="Upload a file to a slims experiment attachment step.")
+@click.option('--url',
+    help = 'Slims REST URL. ex: https://<your_slims_address>/rest/rest',
+    required = True)
+@click.option('--proj',
+    help = 'Project name (if any).',
+    required = False)
+@click.option('-e', '--exp',
+    help = 'Experiment name.',
+    required = True)
+@click.option('--step',
+    default = 'data_collection',
+    help = 'Experiment step name.',
+    required = True,
+    show_default = True)
+@click.option('--active',
+    help = 'Search only in active or inactive steps (or in both).',
+    type = click.Choice(['true', 'false', 'both'],
+        case_sensitive = False),
+    default = 'true',
+    required = False,
+    show_default = True)
+@click.option('--source',
+    help = 'Path to the file that will be uploaded.',
+    required = True)
+@click.option('-t', '--target',
+    help = 'A name to give to the attachement that will be created. [default: same as --source]',
+    required = False)
+@click.option('-u', '--username',
+    prompt = "User",
+    help = 'User name (prompted).',
+    required = True)
+@click.option('-p', '--pwd',
+    prompt = "Password",
+    hide_input = True,
+    help = 'Password (prompted).',
+    required = True)
+def add(url, username, pwd, proj, exp, step, active, source, target):
+    slims = Slims(url = url,
+        username = username,
+        pwd = pwd)
+    slims.upload_attachment(proj = proj,
+        exp = exp,
+        step = step,
+        active = active,
+        source = source,
+        target = target
     )
 
 if __name__ == '__main__':

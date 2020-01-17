@@ -7,7 +7,7 @@ A high-level CLI for Slims REST API
 .. image:: https://img.shields.io/github/v/release/auwerxlab/slims-lisp-python-api
    :target: https://github.com/auwerxlab/slims-lisp-python-api/releases
 .. image:: https://img.shields.io/pypi/v/slims-lisp
-   :target: https://pypi.python.org/pypi/slims-lisp-python-api
+   :target: https://pypi.python.org/pypi/slims-lisp
 
 Slims-lisp is a small python package that provides a CLI for Slims REST API.
 
