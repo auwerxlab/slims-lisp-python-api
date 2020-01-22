@@ -236,3 +236,4 @@ tags
 
 # End of https://www.gitignore.io/api/macos,python,linux,vim,emacs,visualstudiocode
 
+tmp/

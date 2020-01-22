@@ -1,7 +1,9 @@
+import os
 import sys
 import json
 import requests
 import datetime
+import base64
 
 class Slims(object):
 
@@ -11,11 +13,31 @@ class Slims(object):
         self.pwd = pwd
 
     def get(self, table, **kwargs):
-        return requests.get(self.url + "/" + table,
+        if "response" not in kwargs.keys():
+            response = []
+        else:
+            response = kwargs["response"]
+            del kwargs["response"]
+        response.append(requests.get(self.url + "/" + table,
                 auth = (self.username, self.pwd),
                 **kwargs
+            )
         )
+        return response[0]
 
+    def post(self, table, **kwargs):
+        if "response" not in kwargs.keys():
+            response = []
+        else:
+            response = kwargs["response"]
+            del kwargs["response"]
+        response.append(requests.post(self.url + "/" + table,
+                auth = (self.username, self.pwd),
+                **kwargs
+            )
+        )
+        return response[0]
+    
     def get_project(self, **kwargs):
         criteria = [{"fieldName":key,
                 "operator":"equals",
@@ -96,7 +118,7 @@ class Slims(object):
             }
         )
 
-    def download_attachment(self, proj, exp, step, attm, active, linked, output):
+    def download_attachment(self, proj, exp, step, active, attm, linked, output):
         """Download a file from a slims experiment attachment step."""
 
         if active is None:
@@ -155,8 +177,7 @@ class Slims(object):
         attachment = self.get_attachment(linked = linked,
             attm_name = attm,
             user_userName = self.username)
-        with open("test.txt", "w") as f:
-            json.dump(attachment.json(), f, indent=2)
+
         attachment = [
             [{"attm_file_filename":e1["value"], "pk":e0["pk"]}
                 for e1 in e0["columns"]
@@ -167,7 +188,7 @@ class Slims(object):
 
         # Retrieve Attachment link
         attachment_link = self.get_attachment_link(atln_recordTable = "ExperimentRunStep",
-            atln_recordPk = experiment_step.json()['entities'][0]['pk'])
+            atln_recordPk = experiment_step.json()["entities"][0]["pk"])
 
         attachment_link_pk = [
             e2[0] for e2 in [[e1["value"]
@@ -193,9 +214,10 @@ class Slims(object):
                 )
 
         # Download the attachement
+        response = []
         with self.get(table = "repo/" + str(attachment_link_pk[0]),
+            response = response,
             stream = True) as r:
-            r.raise_for_status()
             with open(output, "wb") as f:
                 for chunk in r.iter_content(chunk_size = 8192):
                     if chunk:
@@ -222,14 +244,17 @@ class Slims(object):
         with open(output + "_metadata.txt", "w") as f:
             json.dump(metadata, f, indent=2)
 
-    def upload_attachment(self, proj, exp, step, active, source, target):
+        return response[0]
+
+
+    def upload_attachment(self, proj, exp, step, active, attm, file):
         """Upload a file to a slims experiment attachment step."""
 
         if active is None:
             active = "true"
         active = active.lower()
-        if target is None:
-            target = source
+        if attm is None:
+            attm = os.path.basename(file)
 
         # Retrieve Project
         kwargs = {"xprn_name":exp,
@@ -260,7 +285,7 @@ class Slims(object):
 
         # Retrieve ExperimentRunStep
         experiment_step = self.get_experiment_step(active = active,
-            xprs_fk_experimentRun = experiment_run.json()['entities'][0]['pk'],
+            xprs_fk_experimentRun = experiment_run.json()["entities"][0]["pk"],
             xpst_type = "ATTACHMENT_STEP",
             xpst_name = step)
 
@@ -273,3 +298,15 @@ class Slims(object):
             sys.exit("No step found with name '" + step +
                 "' in experiment '" + exp + "'."
             )
+
+        with open(file, "rb") as f:
+            response = self.post(table = "/repo",
+                    headers = {"Content-Type":"application/json"},
+                    json = {"atln_recordTable":"ExperimentRunStep",
+                    "atln_recordPk":experiment_step.json()["entities"][0]['pk'],
+                    "attm_name":attm,
+                    "contents":base64.b64encode(f.read()).decode("utf-8")},
+                    stream = True
+            )
+
+        return response
