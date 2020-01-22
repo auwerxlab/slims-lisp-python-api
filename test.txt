@@ -1,0 +1,21 @@
+    Usage: slims-lisp add [OPTIONS]
+    
+      Upload a file to a slims experiment attachment step.
+    
+    Options:
+      --url TEXT                  Slims REST URL. ex:
+                                  https://<your_slims_address>/rest/rest
+                                  [required]
+      --proj TEXT                 Project name (if any).
+      --exp TEXT                  Experiment name.  [required]
+      --step TEXT                 Experiment step name.  [default: results;
+                                  required]
+      --active [true|false|both]  Search only in active or inactive steps (or in
+                                  both).  [default: true]
+      --file TEXT                 Path to the file that will be uploaded.
+                                  [required]
+      --attm TEXT                 A name to give to the attachement that will be
+                                  created. [default: same as --file]
+      -u, --username TEXT         User name (prompted).  [required]
+      -p, --pwd TEXT              Password (prompted).  [required]
+      --help                      Show this message and exit.
