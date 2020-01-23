@@ -119,7 +119,7 @@ class Slims(object):
         )
 
     def download_attachment(self, proj, exp, step, active, attm, linked, output):
-        """Download a file from a slims experiment attachment step."""
+        """H2Download a file from a slims experiment attachment step."""
 
         if active is None:
             active = "true"
