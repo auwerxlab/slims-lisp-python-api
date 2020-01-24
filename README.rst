@@ -55,4 +55,4 @@ Once ``pipx`` is installed use following command to install ``slims-lisp``.
 Usage
 =====
 
-The latest documentation is available on `https://readthedocs.org <https://slims-lisp-python-api.readthedocs.io/en/latest/>`.
+The latest documentation is available on `https://readthedocs.org <https://slims-lisp-python-api.readthedocs.io/en/latest/>`_.
