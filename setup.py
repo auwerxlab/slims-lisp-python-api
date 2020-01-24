@@ -17,6 +17,13 @@ setup(
         'requests',
         'datetime',
     ],
+    extras_requires = {
+        'docs': [
+            'click',
+            'requests',
+            'datetime',
+        ],
+    },
     entry_points = {
         'console_scripts': [
             'slims-lisp = slims_lisp.__main__:cli'
