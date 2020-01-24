@@ -19,9 +19,7 @@ setup(
     ],
     extras_requires = {
         'docs': [
-            'click',
-            'requests',
-            'datetime',
+            'sphinx-click',
         ],
     },
     entry_points = {
