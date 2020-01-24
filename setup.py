@@ -17,12 +17,6 @@ setup(
         'requests',
         'datetime',
     ],
-    extras_requires = {
-        'docs': [
-            'sphinx >=2.3',
-            'sphinx-click',
-        ],
-    },
     entry_points = {
         'console_scripts': [
             'slims-lisp = slims_lisp.__main__:cli'

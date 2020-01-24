@@ -3,9 +3,12 @@ from slims_lisp.slims import Slims
 
 @click.group()
 def cli():
+    """ \b
+A high-level CLI for SLIMS REST API
+    """
     pass
 
-@cli.command(help="Download a file from a slims experiment attachment step.")
+@cli.command()
 @click.option('--url',
     help = 'Slims REST URL. ex: https://<your_slims_address>/rest/rest',
     required = True)
@@ -50,6 +53,30 @@ def cli():
     help = 'Password (prompted).',
     required = True)
 def fetch(url, username, pwd, proj, exp, step, active, attm, linked, output):
+    """\b
+Download a file from a slims experiment attachment step.
+
+
+Return:
+
+    Returns the HTTP GET request response.
+
+
+Output:
+
+    Generates two files (by default in the working directory):
+
+        -<output>               The requested file\n
+        -<output>_metadata.txt  Associated metadata in a JSON format
+
+
+Example:
+
+    $ slims-lisp fetch --url <your_slims_url> \
+--proj <your_project_name> --exp <your_experiment_name> \
+--step <your_attachment_step_name> --attm <your_attachment_name>
+    """
+
     slims = Slims(url = url,
         username = username,
         pwd = pwd)
@@ -63,7 +90,7 @@ def fetch(url, username, pwd, proj, exp, step, active, attm, linked, output):
     )
     return response
 
-@cli.command(help="Upload a file to a slims experiment attachment step.")
+@cli.command()
 @click.option('--url',
     help = 'Slims REST URL. ex: https://<your_slims_address>/rest/rest',
     required = True)
@@ -101,6 +128,22 @@ def fetch(url, username, pwd, proj, exp, step, active, attm, linked, output):
     help = 'Password (prompted).',
     required = True)
 def add(url, username, pwd, proj, exp, step, active, file, attm):
+    """\b
+Upload a file to a slims experiment attachment step.
+
+
+Return:
+
+    Returns the HTTP POST request response.
+
+
+Example:
+
+    $ slims-lisp add --url <your_slims_url> --proj <your_project_name> \
+--exp <your_experiment_name> --step <your_attachment_step_name> \
+--file <path/to/your/file>
+    """
+
     slims = Slims(url = url,
         username = username,
         pwd = pwd)

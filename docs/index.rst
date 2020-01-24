@@ -15,8 +15,8 @@ A high-level CLI for SLIMS REST API
    :target: https://pypi.python.org/pypi/slims-lisp
 
 
-Project
-=======
+Documentation
+=============
 
 .. toctree::
    :maxdepth: 3
