@@ -9,11 +9,16 @@ A high-level CLI for SLIMS REST API
 
 .. image:: https://img.shields.io/badge/license-apache2-brightgreen.svg
    :target: https://github.com/auwerxlab/slims-lisp-python-api/blob/master/LICENSE
+
 .. image:: https://img.shields.io/github/v/release/auwerxlab/slims-lisp-python-api
    :target: https://github.com/auwerxlab/slims-lisp-python-api/releases
+
 .. image:: https://img.shields.io/pypi/v/slims-lisp
    :target: https://pypi.python.org/pypi/slims-lisp
 
+.. image:: https://readthedocs.org/projects/slims-lisp-python-api/badge/?version=latest
+   :target: https://slims-lisp-python-api.readthedocs.io/en/latest/?badge=latest
+   :alt: Documentation Status
 
 Documentation
 =============
