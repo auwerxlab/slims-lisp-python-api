@@ -19,6 +19,7 @@ setup(
     ],
     extras_requires = {
         'docs': [
+            'sphinx >=2.3',
             'sphinx-click',
         ],
     },
