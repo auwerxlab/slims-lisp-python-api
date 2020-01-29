@@ -22,7 +22,7 @@ Features:
 - Download a file from a SLIMS experiment attachment step.
 - Upload a file to a SLIMS experiment attachment step.
 - Create a new SLIMS experiment attachment step and upload multiple files to it
-(useful to upload a whole dataset containing multiple data and/or metadata files at once).
+  (useful to upload a whole dataset containing multiple data and/or metadata files at once).
 
 Installation
 ============
