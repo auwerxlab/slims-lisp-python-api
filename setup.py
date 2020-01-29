@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name = 'slims-lisp',
-    version = '0.1.1',
+    version = '0.1.2',
     description = 'A high-level CLI for SlIMS REST API',
     long_description = open('README.rst').read(),
     long_description_content_type = 'text/x-rst',
@@ -10,12 +10,13 @@ setup(
     author = 'Laboratory of Integrative System Physiology (LISP) at EPFL',
     author_email = 'alexis.rapin@epfl.ch',
     url = 'https://github.com/auwerxlab/slims-lisp-python-api',
-    download_url = 'https://github.com/auwerxlab/slims-lisp-python-api/archive/v0.1.1.tar.gz',
+    download_url = 'https://github.com/auwerxlab/slims-lisp-python-api/archive/v0.1.2.tar.gz',
     packages = find_packages(),
+    python_requires = '>=3.5.2',
     install_requires = [
-        'click',
-        'requests',
-        'datetime',
+        'click>=7.0',
+        'requests>=2.22.0',
+        'datetime>=4.3',
     ],
     entry_points = {
         'console_scripts': [

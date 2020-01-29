@@ -118,24 +118,15 @@ class Slims(object):
             }
         )
 
-    def download_attachment(self, proj, exp, step, active, attm, linked, output):
-        """H2Download a file from a slims experiment attachment step."""
+    def create_attachment_step(self, proj, exp, title, verbose):
+        """Create a new attachment step in an experiment."""
 
-        if active is None:
-            active = "true"
-        active = active.lower()
-        if linked is None:
-            linked = "true"
-        linked = linked.lower()
-        if output is None:
-            output = attm
-
-        # Retrieve Project
         kwargs = {"xprn_name":exp,
             "user_userName":self.username,
             "value":exp
         }
 
+        # Retrieve Project
         if proj:
             project = self.get_project(prjc_name = proj, user_userName = self.username)
 
@@ -148,6 +139,79 @@ class Slims(object):
 
             kwargs.update({"xprn_fk_project":project.json()["entities"][0]["pk"]})
 
+        # Retrieve Experiment
+        experiment_run = self.get_experiment(**kwargs)
+    
+        if len(experiment_run.json()["entities"]) > 1:
+            sys.exit("Multiple experiments found with name '" + exp +
+                "'. Make sure experiments names are unique."
+            )
+        elif len(experiment_run.json()["entities"]) == 0:
+            sys.exit("No experiment found with name '" + exp + "'.")
+
+        # Check if an attachment step with same name already exists
+        experiment_step = self.get_experiment_step(active = "true",
+            xprs_fk_experimentRun = experiment_run.json()['entities'][0]['pk'],
+            xpst_type = "ATTACHMENT_STEP",
+            xprs_name = title)
+        
+        if len(experiment_step.json()["entities"]) > 1:
+            print("Warning: A steps with name '" + title +
+                "' in experiment '" + exp +
+                "' already exists."
+            )
+        
+        response = self.post(table = "/eln/ExperimentRun/" +
+            str(experiment_run.json()['entities'][0]['pk']),
+                    headers = {"Content-Type":"application/json"},
+                    json = {"xprs_name":title,
+                    "xpst_type":"ATTACHMENT_STEP"
+                }
+            )
+
+        if verbose == True and response.status_code == 200:
+            print("Created step '" + title +
+            "' in experiment '" + exp + "'."
+            )
+        elif response.status_code != 200:
+            print("Warning: Could not create step '" + title +
+            "' in experiment '" + exp +
+            "'. Response status " + str(response.status_code)
+            )
+
+        return response
+
+    def download_attachment(self, proj, exp, step, active, attm, linked, output, verbose):
+        """Download a file from a SLIMS experiment attachment step."""
+
+        if active is None:
+            active = "true"
+        active = active.lower()
+        if linked is None:
+            linked = "true"
+        linked = linked.lower()
+        if output is None:
+            output = attm
+
+        kwargs = {"xprn_name":exp,
+            "user_userName":self.username,
+            "value":exp
+        }
+
+        # Retrieve Project
+        if proj:
+            project = self.get_project(prjc_name = proj, user_userName = self.username)
+
+            if len(project.json()["entities"]) > 1:
+                sys.exit("Multiple projects found with name '" + proj +
+                    "'. Make sure projects names are unique."
+                )
+            elif len(project.json()["entities"]) == 0:
+                sys.exit("No project found with name '" + proj + "'.")
+
+            kwargs.update({"xprn_fk_project":project.json()["entities"][0]["pk"]})
+
+        # Retrieve Experiment
         experiment_run = self.get_experiment(**kwargs)
     
         if len(experiment_run.json()["entities"]) > 1:
@@ -161,7 +225,7 @@ class Slims(object):
         experiment_step = self.get_experiment_step(active = active,
             xprs_fk_experimentRun = experiment_run.json()['entities'][0]['pk'],
             xpst_type = "ATTACHMENT_STEP",
-            xpst_name = step)
+            xprs_name = step)
 
         if len(experiment_step.json()["entities"]) > 1:
             sys.exit("Multiple steps found with name '" + step +
@@ -223,6 +287,13 @@ class Slims(object):
                     if chunk:
                         f.write(chunk)
 
+        if verbose == True and response[0].status_code == 200:
+            print("Downloaded '" + output + "'.")
+        elif response[0].status_code != 200:
+            print("Warning: Could not download '" + output +
+            "'. Response status " + str(response[0].status_code)
+            )
+
         # Save metadata
         metadata = {"url":self.url + "/repo/" + str(attachment_link_pk[0]),
             "creator":self.username,
@@ -247,8 +318,8 @@ class Slims(object):
         return response[0]
 
 
-    def upload_attachment(self, proj, exp, step, active, attm, file):
-        """Upload a file to a slims experiment attachment step."""
+    def upload_attachment(self, proj, exp, step, active, file, attm, verbose):
+        """Upload a file to a an existing SLIMS experiment attachment step."""
 
         if active is None:
             active = "true"
@@ -256,12 +327,12 @@ class Slims(object):
         if attm is None:
             attm = os.path.basename(file)
 
-        # Retrieve Project
         kwargs = {"xprn_name":exp,
             "user_userName":self.username,
             "value":exp
         }
 
+        # Retrieve Project
         if proj:
             project = self.get_project(prjc_name = proj, user_userName = self.username)
 
@@ -274,6 +345,7 @@ class Slims(object):
 
             kwargs.update({"xprn_fk_project":project.json()["entities"][0]["pk"]})
 
+        # Retrieve Experiment
         experiment_run = self.get_experiment(**kwargs)
     
         if len(experiment_run.json()["entities"]) > 1:
@@ -287,7 +359,7 @@ class Slims(object):
         experiment_step = self.get_experiment_step(active = active,
             xprs_fk_experimentRun = experiment_run.json()["entities"][0]["pk"],
             xpst_type = "ATTACHMENT_STEP",
-            xpst_name = step)
+            xprs_name = step)
 
         if len(experiment_step.json()["entities"]) > 1:
             sys.exit("Multiple steps found with name '" + step +
@@ -308,5 +380,17 @@ class Slims(object):
                     "contents":base64.b64encode(f.read()).decode("utf-8")},
                     stream = True
             )
+
+        if verbose == True and response.status_code == 200:
+            print("Uploaded '" + file +
+                "' to experiment '" + exp +
+                "' step '" + step + "'."
+                )
+        elif response.status_code != 200:
+            print("Warning: Could not upload '" + file +
+                "' to experiment '" + exp +
+                "' step '" + step +
+                ". Response status " + str(response.status_code)
+                )
 
         return response

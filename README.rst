@@ -15,12 +15,14 @@ A high-level CLI for Slims REST API
    :target: https://slims-lisp-python-api.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
 
-Slims-lisp is a small python package that provides a CLI for Slims REST API.
+Slims-lisp is a small python package that provides a CLI for SLIMS REST API.
 
 Features:
 
-- Download a file from a slims experiment attachment step.
-- Upload a file to a slims experiment attachment step.
+- Download a file from a SLIMS experiment attachment step.
+- Upload a file to a SLIMS experiment attachment step.
+- Create a new SLIMS experiment attachment step and upload multiple files to it
+(useful to upload a whole dataset containing multiple data and/or metadata files at once).
 
 Installation
 ============

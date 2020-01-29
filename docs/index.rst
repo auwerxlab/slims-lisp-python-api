@@ -28,6 +28,7 @@ Documentation
 
    cli
    modules
+   slims_requirements
 
 Indices and tables
 ==================
