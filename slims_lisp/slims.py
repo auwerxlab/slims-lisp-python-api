@@ -314,6 +314,8 @@ class Slims(object):
 
         with open(output + "_metadata.txt", "w") as f:
             json.dump(metadata, f, indent=2)
+        if verbose == True:
+            print("Metadata writen to '" + output + "_metadata.txt'")
 
         return response[0]
 
