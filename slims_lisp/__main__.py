@@ -12,17 +12,21 @@ A high-level CLI for SLIMS REST API
 
 @cli.command()
 @click.option('--url',
-    help = 'SLIMS REST URL. ex: https://<your_slims_address>/rest/rest',
+    help = 'SLIMS REST URL (ex: https://<your_slims_address>/rest/rest).',
+    prompt = 'SLIMS REST URL (ex: https://<your_slims_address>/rest/rest)',
     required = True)
 @click.option('--proj',
+    default = '',
     help = 'Project name (if any).',
-    required = False)
+    prompt = 'Project name (if any)')
 @click.option('--exp',
     help = 'Experiment name.',
+    prompt = 'Experiment name',
     required = True)
 @click.option('--step',
     default = 'data_collection',
     help = 'Experiment step name.',
+    prompt = 'Experiment step name',
     required = True,
     show_default = True)
 @click.option('--active',
@@ -34,6 +38,7 @@ A high-level CLI for SLIMS REST API
     show_default = True)
 @click.option('--attm',
     help = 'Attachment name.',
+    prompt = 'Attachment name',
     required = True)
 @click.option('--linked',
     help = 'Search only linked or unlinked attachments (or both).',
@@ -43,19 +48,20 @@ A high-level CLI for SLIMS REST API
     required = False,
     show_default = True)
 @click.option('--output',
+    default = '',
     help = 'Output file name. [default: same as --attm]',
-    required = False)
+    prompt = 'Output file name. [default: same as --attm]')
 @click.option('-v', '--verbose',
     is_flag = True,
     help = 'Print various messages.')
 @click.option('-u', '--username',
-    prompt = "User",
-    help = 'User name (prompted).',
+    help = 'User name.',
+    prompt = 'User name',
     required = True)
 @click.option('-p', '--pwd',
-    prompt = "Password",
+    help = 'Password.',
+    prompt = 'Password',
     hide_input = True,
-    help = 'Password (prompted).',
     required = True)
 def fetch(url, username, pwd, proj, exp, step, active, attm, linked, output, verbose):
     """\b
@@ -101,16 +107,20 @@ Example:
 @cli.command()
 @click.option('--url',
     help = 'SLIMS REST URL. ex: https://<your_slims_address>/rest/rest',
+    prompt = 'SLIMS REST URL (ex: https://<your_slims_address>/rest/rest)',
     required = True)
 @click.option('--proj',
+    default = '',
     help = 'Project name (if any).',
-    required = False)
+    prompt = 'Project name (if any)')
 @click.option('--exp',
     help = 'Experiment name.',
+    prompt = 'Experiment name',
     required = True)
 @click.option('--step',
     default = 'results',
     help = 'Experiment step name.',
+    prompt = 'Experiment step name',
     required = True,
     show_default = True)
 @click.option('--active',
@@ -122,6 +132,7 @@ Example:
     show_default = True)
 @click.option('--file',
     help = 'Path to the file that will be uploaded.',
+    prompt = 'Path to the file that will be uploaded',
     required = True)
 @click.option('--attm',
     help = 'A name to give to the attachement that will be created. [default: same as --file]',
@@ -130,13 +141,13 @@ Example:
     is_flag = True,
     help = 'Print various messages.')
 @click.option('-u', '--username',
-    prompt = "User",
-    help = 'User name (prompted).',
+    help = 'User name.',
+    prompt = "User name",
     required = True)
 @click.option('-p', '--pwd',
-    prompt = "Password",
+    help = 'Password.',
+    prompt = 'Password',
     hide_input = True,
-    help = 'Password (prompted).',
     required = True)
 def add(url, username, pwd, proj, exp, step, active, file, attm, verbose):
     """\b
@@ -173,29 +184,35 @@ Example:
 @cli.command()
 @click.option('--url',
     help = 'SLIMS REST URL. ex: https://<your_slims_address>/rest/rest',
+    prompt = 'SLIMS REST URL (ex: https://<your_slims_address>/rest/rest)',
     required = True)
 @click.option('--proj',
+    default = '',
     help = 'Project name (if any).',
-    required = False)
+    prompt = 'Project name (if any)')
 @click.option('--exp',
     help = 'Experiment name.',
+    prompt = 'Experiment name',
     required = True)
 @click.option('--files',
     help = 'Comma-delimited paths to the files that will be uploaded.',
+    prompt = 'Comma-delimited paths to the files that will be uploaded',
     required = True)
 @click.option('--title',
-    help = 'The title of the attachment block that will be created for the dataset in SLIMS.  [default: dataset_<ISO 8601 timestamp>]')
+    default = '',
+    help = 'The title of the attachment block that will be created for the dataset in SLIMS.  [default: dataset_<ISO 8601 timestamp>]',
+    prompt = 'The title of the attachment block that will be created for the dataset in SLIMS.  [default: dataset_<ISO 8601 timestamp>]')
 @click.option('-v', '--verbose',
     is_flag = True,
     help = 'Print various messages.')
 @click.option('-u', '--username',
-    prompt = "User",
-    help = 'User name (prompted).',
+    help = 'User name.',
+    prompt = 'User name',
     required = True)
 @click.option('-p', '--pwd',
-    prompt = "Password",
+    help = 'Password.',
+    prompt = 'Password',
     hide_input = True,
-    help = 'Password (prompted).',
     required = True)
 def add_dataset(url, username, pwd, proj, exp, files, title, verbose):
     """\b
@@ -217,7 +234,7 @@ Example:
 --title <your_dataset_name>
     """
 
-    if title is None:
+    if title == "":
         title = "dataset_" + datetime.datetime.now(
                 datetime.timezone.utc
             ).isoformat(sep='T')

@@ -127,7 +127,7 @@ class Slims(object):
         }
 
         # Retrieve Project
-        if proj:
+        if proj != "":
             project = self.get_project(prjc_name = proj, user_userName = self.username)
 
             if len(project.json()["entities"]) > 1:
@@ -190,8 +190,11 @@ class Slims(object):
         if linked is None:
             linked = "true"
         linked = linked.lower()
-        if output is None:
+        if output == "":
             output = attm
+
+        if not os.path.exists(os.path.dirname(output)):
+            os.makedirs(os.path.dirname(output))
 
         kwargs = {"xprn_name":exp,
             "user_userName":self.username,
@@ -199,7 +202,7 @@ class Slims(object):
         }
 
         # Retrieve Project
-        if proj:
+        if proj != "":
             project = self.get_project(prjc_name = proj, user_userName = self.username)
 
             if len(project.json()["entities"]) > 1:
@@ -335,7 +338,7 @@ class Slims(object):
         }
 
         # Retrieve Project
-        if proj:
+        if proj != "":
             project = self.get_project(prjc_name = proj, user_userName = self.username)
 
             if len(project.json()["entities"]) > 1:
