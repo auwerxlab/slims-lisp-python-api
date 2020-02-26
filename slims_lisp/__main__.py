@@ -47,7 +47,7 @@ A high-level CLI for SLIMS REST API
     default = 'true',
     required = False,
     show_default = True)
-@click.option('--output',
+@click.option('--output_fp',
     default = '',
     help = 'Output file name. [default: same as --attm]',
     prompt = 'Output file name. [default: same as --attm]')
@@ -77,8 +77,8 @@ Output:
 
     Generates two files (by default in the working directory):
 
-        -<output>               The requested file\n
-        -<output>_metadata.txt  Associated metadata in a JSON format
+        -<output_fp>               The requested file\n
+        -<output_fp>_metadata.txt  Associated metadata in a JSON format
 
 
 Example:
@@ -99,7 +99,7 @@ Example:
         active = active,
         attm = attm,
         linked = linked,
-        output = output,
+        output = output_fp,
         verbose = verbose
     )
     return response
