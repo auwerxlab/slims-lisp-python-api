@@ -181,7 +181,7 @@ class Slims(object):
 
         return response
 
-    def download_attachment(self, proj, exp, step, active, attm, linked, output, verbose):
+    def download_attachment(self, proj, exp, step, active, attm, linked, output_dir, verbose):
         """Download a file from a SLIMS experiment attachment step."""
 
         if active is None:
@@ -190,11 +190,13 @@ class Slims(object):
         if linked is None:
             linked = "true"
         linked = linked.lower()
-        if output == "":
-            output = attm
-
-        if not os.path.exists(os.path.dirname(output)):
-            os.makedirs(os.path.dirname(output))
+        output = attm
+        if output_dir != "":
+            if not os.path.exists(output_dir):
+                os.makedirs(output_dir)
+            elif not os.path.isdir(output_dir):
+                sys.exit("'" + output_dir + " already exists and is not a directory.")
+            output = os.path.normpath(output_dir + "/" + attm)
 
         kwargs = {"xprn_name":exp,
             "user_userName":self.username,

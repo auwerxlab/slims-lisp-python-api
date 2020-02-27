@@ -47,10 +47,10 @@ A high-level CLI for SLIMS REST API
     default = 'true',
     required = False,
     show_default = True)
-@click.option('--output_fp',
+@click.option('--output_dir',
     default = '',
-    help = 'Output file name. [default: same as --attm]',
-    prompt = 'Output file name. [default: same as --attm]')
+    help = 'Output directory [default: working directory].',
+    prompt = 'Output directory')
 @click.option('-v', '--verbose',
     is_flag = True,
     help = 'Print various messages.')
@@ -63,7 +63,7 @@ A high-level CLI for SLIMS REST API
     prompt = 'Password',
     hide_input = True,
     required = True)
-def fetch(url, username, pwd, proj, exp, step, active, attm, linked, output, verbose):
+def fetch(url, username, pwd, proj, exp, step, active, attm, linked, output_dir, verbose):
     """\b
 Download a file from a SLIMS experiment attachment step.
 
@@ -77,8 +77,8 @@ Output:
 
     Generates two files (by default in the working directory):
 
-        -<output_fp>               The requested file\n
-        -<output_fp>_metadata.txt  Associated metadata in a JSON format
+        -<output_dir>/<attm>               The requested file\n
+        -<output_dir>/<attm>_metadata.txt  Associated metadata in a JSON format
 
 
 Example:
@@ -99,7 +99,7 @@ Example:
         active = active,
         attm = attm,
         linked = linked,
-        output = output_fp,
+        output_dir = output_dir,
         verbose = verbose
     )
     return response
