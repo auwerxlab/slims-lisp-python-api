@@ -38,6 +38,11 @@ class Slims(object):
         )
         return response[0]
     
+class Eln(Slims):
+
+    def __init__(self, url, username, pwd):
+        Slims.__init__(self, url, username, pwd)
+
     def get_project(self, **kwargs):
         criteria = [{"fieldName":key,
                 "operator":"equals",

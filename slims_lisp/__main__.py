@@ -1,7 +1,7 @@
 import click
 import datetime
 import base64
-from slims_lisp.slims import Slims
+from slims_lisp.slims import Slims, Eln
 
 @click.group()
 def cli():
@@ -10,7 +10,14 @@ A high-level CLI for SLIMS REST API
     """
     pass
 
-@cli.command()
+@cli.group()
+def eln():
+    """ \b
+CLI for the Electronic Lab Notebook (ELN)
+    """
+    pass
+
+@eln.command()
 @click.option('--url',
     help = 'SLIMS REST URL (ex: https://<your_slims_address>/rest/rest).',
     prompt = 'SLIMS REST URL (ex: https://<your_slims_address>/rest/rest)',
@@ -55,17 +62,17 @@ A high-level CLI for SLIMS REST API
     is_flag = True,
     help = 'Print various messages.')
 @click.option('-u', '--username',
-    help = 'User name.',
-    prompt = 'User name',
+    help = 'SLIMS user name.',
+    prompt = 'SLIMS user name',
     required = True)
 @click.option('-p', '--pwd',
-    help = 'Password.',
-    prompt = 'Password',
+    help = 'SLIMS password.',
+    prompt = 'SLIMS password',
     hide_input = True,
     required = True)
-def fetch(url, username, pwd, proj, exp, step, active, attm, linked, output_dir, verbose):
+def fetch_attachment(url, username, pwd, proj, exp, step, active, attm, linked, output_dir, verbose):
     """\b
-Download a file from a SLIMS experiment attachment step.
+Download a file from an ELN experiment attachment step.
 
 
 Return:
@@ -83,17 +90,17 @@ Output:
 
 Example:
 
-    $ slims-lisp fetch --url <your_slims_url> \
+    $ slims-lisp eln fetch-attachment --url <your_slims_url> \
 --proj <your_project_name> \
 --exp <your_experiment_name> \
 --step <your_attachment_step_name> \
 --attm <your_attachment_name>
     """
 
-    slims = Slims(url = url,
+    eln = Eln(url = url,
         username = username,
         pwd = pwd)
-    response = slims.download_attachment(proj = proj,
+    response = eln.download_attachment(proj = proj,
         exp = exp,
         step = step,
         active = active,
@@ -104,7 +111,7 @@ Example:
     )
     return response
 
-@cli.command()
+@eln.command()
 @click.option('--url',
     help = 'SLIMS REST URL. ex: https://<your_slims_address>/rest/rest',
     prompt = 'SLIMS REST URL (ex: https://<your_slims_address>/rest/rest)',
@@ -141,17 +148,17 @@ Example:
     is_flag = True,
     help = 'Print various messages.')
 @click.option('-u', '--username',
-    help = 'User name.',
-    prompt = "User name",
+    help = 'SLIMS user name.',
+    prompt = "SLIMS user name",
     required = True)
 @click.option('-p', '--pwd',
-    help = 'Password.',
-    prompt = 'Password',
+    help = 'SLIMS password.',
+    prompt = 'SLIMS password',
     hide_input = True,
     required = True)
-def add(url, username, pwd, proj, exp, step, active, file, attm, verbose):
+def add_attachment(url, username, pwd, proj, exp, step, active, file, attm, verbose):
     """\b
-Upload a file to a an existing SLIMS experiment attachment step.
+Upload a file to a an existing ELN experiment attachment step.
 
 
 Return:
@@ -161,17 +168,17 @@ Return:
 
 Example:
 
-    $ slims-lisp add --url <your_slims_url> \
+    $ slims-lisp eln add-attachment --url <your_slims_url> \
 --proj <your_project_name> \
 --exp <your_experiment_name> \
 --step <your_attachment_step_name> \
 --file <path/to/your/file>
     """
 
-    slims = Slims(url = url,
+    eln = Eln(url = url,
         username = username,
         pwd = pwd)
-    response = slims.upload_attachment(proj = proj,
+    response = eln.upload_attachment(proj = proj,
         exp = exp,
         step = step,
         active = active,
@@ -181,7 +188,7 @@ Example:
     )
     return response
 
-@cli.command()
+@eln.command()
 @click.option('--url',
     help = 'SLIMS REST URL. ex: https://<your_slims_address>/rest/rest',
     prompt = 'SLIMS REST URL (ex: https://<your_slims_address>/rest/rest)',
@@ -206,17 +213,17 @@ Example:
     is_flag = True,
     help = 'Print various messages.')
 @click.option('-u', '--username',
-    help = 'User name.',
-    prompt = 'User name',
+    help = 'SLIMS user name.',
+    prompt = 'SLIMS user name',
     required = True)
 @click.option('-p', '--pwd',
-    help = 'Password.',
-    prompt = 'Password',
+    help = 'SLIMS password.',
+    prompt = 'SLIMS password',
     hide_input = True,
     required = True)
 def add_dataset(url, username, pwd, proj, exp, files, title, verbose):
     """\b
-Create a new SLIMS experiment attachment step and upload multiple files to it \
+Create a new ELN experiment attachment step and upload multiple files to it \
 (useful to upload a whole dataset containing multiple data and/or metadata files at once).
 
 
@@ -227,7 +234,7 @@ Return:
 
 Example:
 
-    $ slims-lisp add-dataset --url <your_slims_url> \
+    $ slims-lisp eln add-dataset --url <your_slims_url> \
 --proj <your_project_name> \
 --exp <your_experiment_name> \
 --files <file1>,<file2>,<file3> \
@@ -239,11 +246,11 @@ Example:
                 datetime.timezone.utc
             ).isoformat(sep='T')
 
-    slims = Slims(url = url,
+    eln = Eln(url = url,
         username = username,
         pwd = pwd)
     response = dict()
-    response[title] = slims.create_attachment_step(proj = proj,
+    response[title] = eln.create_attachment_step(proj = proj,
         exp = exp,
         title = title,
         verbose = verbose
@@ -251,7 +258,7 @@ Example:
 
     for file in files.strip().split(','):
         with open(file, "rb") as f:
-            response[file] = slims.post(table = "/repo",
+            response[file] = eln.post(table = "/repo",
                     headers = {"Content-Type":"application/json"},
                     json = {"atln_recordTable":"ExperimentRunStep",
                     "atln_recordPk":str(response[title].json()["entities"][0]['pk']),
