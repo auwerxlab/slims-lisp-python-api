@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-release_version = '0.1.3'
+release_version = '0.2.0'
 
 setup(
     name = 'slims-lisp',
